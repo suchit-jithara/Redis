@@ -34,3 +34,15 @@ docker exec -it redis-7000 redis-cli -c -p 7000 set name "Suchit"
 ```text
 docker exec -it redis-7001 redis-cli -c -p 7001 get name
 ```
+
+### For check all key from cluster 
+
+```text
+redis-cli -a myRedisPass123 --cluster call 172.17.0.1:7000 keys '*'
+```
+
+### Delete any Key 
+
+```text
+redis-cli -a myRedisPass123 --cluster call 172.17.0.1:7000 DEL name
+```
