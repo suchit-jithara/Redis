@@ -4,31 +4,33 @@
 
 ```text
 docker exec -it redis-7000 redis-cli --cluster create \
-redis-7000:7000 \
-redis-7001:7001 \
-redis-7002:7002 \
-redis-7003:7003 \
-redis-7004:7004 \
-redis-7005:7005 \
---cluster-replicas 1
+172.17.0.1:7000 \
+172.17.0.1:7001 \
+172.17.0.1:7002 \
+172.17.0.1:7003 \
+172.17.0.1:7004 \
+172.17.0.1:7005 \
+--cluster-replicas 1 \
+--cluster-yes \
+-a myRedisPass123
 ```
 
 ### ✅ 1. Check Cluster Info
 
 ```text
-docker exec -it redis-7000 redis-cli -p 7000 cluster info
+docker exec -it redis-7000 redis-cli -a myRedisPass123 -p 7000 cluster info 
 ```
 
 ### ✅ 2. Check Cluster Nodes
 
 ```text
-docker exec -it redis-7000 redis-cli -p 7000 cluster nodes
+docker exec -it redis-7000 redis-cli -a myRedisPass123 -p 7000 cluster nodes
 ```
 
 ### ✅ 3. Test sharding
 
 ```text
-docker exec -it redis-7000 redis-cli -c -p 7000 set name "Suchit"
+docker exec -it redis-7000 redis-cli -a myRedisPass123 -c -p 7000 set name "Suchit"
 ```
 
 ```text
